@@ -7,25 +7,25 @@
 #include "WildDeckManager.generated.h"
 
 struct FCardDataRow;
-UCLASS()
-class UDeck : public UObject
-{
-	GENERATED_BODY()
-public:
-	//UDeck();
-
-	UFUNCTION()
-	void Init();
-	UFUNCTION()
-	FCardDataRow Draw();
-	UFUNCTION()
-	void Shuffle();
-
-private:
-	int maxSize;
-	TArray<FCardDataRow> Deck;
-	TArray<int> Buffer;
-};
+//UCLASS()
+//class UDeck : public UObject
+//{
+//	GENERATED_BODY()
+//public:
+//	//UDeck();
+//
+//	UFUNCTION()
+//	void Init();
+//	UFUNCTION()
+//	FCardDataRow Draw();
+//	UFUNCTION()
+//	void Shuffle();
+//
+//private:
+//	int maxSize;
+//	TArray<FCardDataRow> Deck;
+//	TArray<int> Buffer;
+//};
 /**
  * 
  */

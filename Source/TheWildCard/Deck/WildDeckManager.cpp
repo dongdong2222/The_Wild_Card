@@ -10,29 +10,29 @@ UWildDeckManager* UWildDeckManager::Instance = nullptr;
 //  :maxSize(25)
 //{
 //}
-void UDeck::Init()
-{
-  Buffer.Empty();
-  for (int i = 0; i < maxSize; i++)
-  {
-    Buffer.Add(i);
-  }
-  Shuffle();
-}
-FCardDataRow UDeck::Draw()
-{
-  int idx =  Buffer.Last();
-  Buffer.Pop();
-  return Deck[idx];
-}
-void UDeck::Shuffle()
-{
-  for (int i = 0; i < Buffer.Num(); i++)
-  {
-    int Rand = FMath::RandRange(i, Buffer.Num()-1);
-    Buffer.Swap(i, Rand);
-  }
-}
+//void UDeck::Init()
+//{
+//  Buffer.Empty();
+//  for (int i = 0; i < maxSize; i++)
+//  {
+//    Buffer.Add(i);
+//  }
+//  Shuffle();
+//}
+//FCardDataRow UDeck::Draw()
+//{
+//  int idx =  Buffer.Last();
+//  Buffer.Pop();
+//  return Deck[idx];
+//}
+//void UDeck::Shuffle()
+//{
+//  for (int i = 0; i < Buffer.Num(); i++)
+//  {
+//    int Rand = FMath::RandRange(i, Buffer.Num()-1);
+//    Buffer.Swap(i, Rand);
+//  }
+//}
 UWildDeckManager* UWildDeckManager::GetInstance()
 {
   if (!Instance)

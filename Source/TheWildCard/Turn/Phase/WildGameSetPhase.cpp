@@ -1,0 +1,39 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+
+#include "WildGameSetPhase.h"
+#include "TheWildCard/WildLogChannels.h"
+#include "TheWildCard/GameState/WildGameState.h"
+#include "Blueprint/UserWidget.h"
+
+
+
+void UWildGameSetPhase::InitPhase(AWildGameState* P_GameState)
+{
+  GameState = P_GameState;
+}
+
+void UWildGameSetPhase::StartPhase()
+{
+  if (!GameState) return;
+  UE_LOG(LogPhase, Warning, TEXT("GamesetPhase Start"));
+
+  if (!IsValid(GameSetWidgetClass)) return;
+  GameSetWidget = CreateWidget<UUserWidget>(GetWorld(), GameSetWidgetClass);
+
+  if (GameSetWidget)
+  {
+    GameSetWidget->AddToViewport();
+    // TODO : PlayerController의 입력을 UI모드로
+    
+  }
+
+
+}
+
+void UWildGameSetPhase::EndPhase()
+{
+  UE_LOG(LogPhase, Warning, TEXT("GamesetPhase End"));
+  //GameState->SetPhase(GameState->TurnStartPhase);
+
+}
