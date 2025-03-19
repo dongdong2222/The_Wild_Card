@@ -8,11 +8,11 @@
 
 struct FCardDataRow;
 UCLASS()
-class THEWILDCARD_API UDeck : public UObject
+class UDeck : public UObject
 {
 	GENERATED_BODY()
 public:
-	UDeck();
+	//UDeck();
 
 	UFUNCTION()
 	void Init();
@@ -39,7 +39,7 @@ public:
 private:
 	static UWildDeckManager* Instance;
 
-	UDeck* CurrentDeck;
+	//UDeck* CurrentDeck;
 
 	
 };

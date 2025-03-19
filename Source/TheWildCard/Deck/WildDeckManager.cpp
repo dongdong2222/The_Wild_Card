@@ -6,10 +6,10 @@
 
 UWildDeckManager* UWildDeckManager::Instance = nullptr;
 
-UDeck::UDeck()
-  :maxSize(25)
-{
-}
+//UDeck::UDeck()
+//  :maxSize(25)
+//{
+//}
 void UDeck::Init()
 {
   Buffer.Empty();
