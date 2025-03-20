@@ -29,17 +29,18 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void EndPhase();
 
-	UFUNCTION(BlueprintCallable)
-	void SetInterface(TScriptInterface<IWildTurnState> NewInterface);
-
 
 public:
 	UPROPERTY(EditAnywhere, Category="Phase")
 	TSubclassOf<UWildGameSetPhase> GameSetPhaseClass;
-	//UPROPERTY(EditAnywhere, Category = "Phase")
-	//UPROPERTY(EditAnywhere, Category = "Phase")
-	//UPROPERTY(EditAnywhere, Category = "Phase")
-	//UPROPERTY(EditAnywhere, Category = "Phase")
+	UPROPERTY(EditAnywhere, Category = "Phase")
+	TSubclassOf<UWildGameSetPhase> TurnStartPhaseClass;
+	UPROPERTY(EditAnywhere, Category = "Phase")
+	TSubclassOf<UWildGameSetPhase> ActionSelectPhaseClass;
+	UPROPERTY(EditAnywhere, Category = "Phase")
+	TSubclassOf<UWildGameSetPhase> ActionPhaseClass;
+	UPROPERTY(EditAnywhere, Category = "Phase")
+	TSubclassOf<UWildGameSetPhase> GameEndPhaseClass;
 
 	IWildTurnState* GameSetPhase;
 	IWildTurnState* TurnStartPhase;
@@ -50,8 +51,8 @@ public:
 	//Phases
 	IWildTurnState* CurrentPhase;
 
-	APlayerController* FirstPlayer;
-	APlayerController* SecondPlayer;
+	AController* FirstPlayer;
+	AController* SecondPlayer;
 
 
 	

@@ -9,6 +9,8 @@ void AWildGameState::BeginPlay()
 {
   GameSetPhase = NewObject<UWildGameSetPhase>(this, GameSetPhaseClass);
   GameSetPhase->InitPhase(this);
+  TurnStartPhase = NewObject<UWildGameSetPhase>(this, TurnStartPhaseClass);
+  TurnStartPhase->InitPhase(this);
   //TurnStartPhase;
   //ActionSelectPhase;
   //ActionPhase;
@@ -43,9 +45,4 @@ void AWildGameState::SetPhase(IWildTurnState* NextPhase)
 void AWildGameState::EndPhase()
 {
   CurrentPhase->EndPhase();
-}
-
-void AWildGameState::SetInterface(TScriptInterface<IWildTurnState> NewInterface)
-{
-
 }

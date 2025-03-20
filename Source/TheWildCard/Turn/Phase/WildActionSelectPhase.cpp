@@ -1,25 +1,23 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "WildTurnStartPhase.h"
+#include "WildActionSelectPhase.h"
 #include "TheWildCard/GameState/WildGameState.h"
 #include "TheWildCard/WildLogChannels.h"
 
-
-void UWildTurnStartPhase::InitPhase(AWildGameState* P_GameState)
+void UWildActionSelectPhase::InitPhase(AWildGameState* P_GameState)
 {
   GameState = P_GameState;
 }
 
-void UWildTurnStartPhase::StartPhase()
+void UWildActionSelectPhase::StartPhase()
 {
-  //턴 시작시 효과 발동
-  OnTurnStart.Broadcast();
-  //Draw() player1
-  //Draw() player2
+  //카드 사용 활성화
+  //Force 최대치 증가
+  //Force 회복
 }
 
-void UWildTurnStartPhase::EndPhase()
+void UWildActionSelectPhase::EndPhase()
 {
   UE_LOG(LogPhase, Warning, TEXT("TurnStartPhase End"));
   GameState->SetPhase(GameState->ActionSelectPhase);

@@ -5,16 +5,13 @@
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
 #include "TheWildCard/Turn/WildTurnState.h"
-#include "WildTurnStartPhase.generated.h"
+#include "WildActionSelectPhase.generated.h"
 
 /**
  * 
  */
-//DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnTurnStart, int32, i);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnTurnStart);
-
 UCLASS(Blueprintable)
-class THEWILDCARD_API UWildTurnStartPhase : public UObject, public IWildTurnState
+class THEWILDCARD_API UWildActionSelectPhase : public UObject, public IWildTurnState
 {
 	GENERATED_BODY()
 public:
@@ -24,10 +21,7 @@ public:
 	virtual void EndPhase() override;
 	//End of IWildTurnState
 public:
-	UPROPERTY(BlueprintAssignable)
-	FOnTurnStart OnTurnStart;
+
 private:
 	AWildGameState* GameState;
-
-	
 };

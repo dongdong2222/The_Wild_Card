@@ -34,6 +34,7 @@ void UWildGameSetPhase::StartPhase()
 void UWildGameSetPhase::EndPhase()
 {
   UE_LOG(LogPhase, Warning, TEXT("GamesetPhase End"));
+  //¸Ö¸®°Ç »Ì±â
   GameState->SetPhase(GameState->TurnStartPhase);
 
 }
