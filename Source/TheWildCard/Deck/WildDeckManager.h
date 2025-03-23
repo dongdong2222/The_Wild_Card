@@ -10,22 +10,17 @@ struct FCardDataRow;
 class UWildDeck;
 
 UCLASS()
-class THEWILDCARD_API UWildDeckManager : public UObject
+class THEWILDCARD_API UWildDeckManager : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 public:
-	static UWildDeckManager* GetInstance();
-
 	TArray<UWildDeck*> Decks;
 
-
-
-
-	\
-
+public:
+	UFUNCTION(BlueprintCallable)
+	void AddDeck(UWildDeck* NewDeck);
 
 private:
-	static UWildDeckManager* Instance;
 
 	//UDeck* CurrentDeck;
 

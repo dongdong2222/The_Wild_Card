@@ -4,7 +4,6 @@
 #include "WildDeckManager.h"
 #include "TheWildCard/Card/CardDataRow.h"
 
-UWildDeckManager* UWildDeckManager::Instance = nullptr;
 
 //UDeck::UDeck()
 //  :maxSize(25)
@@ -33,12 +32,9 @@ UWildDeckManager* UWildDeckManager::Instance = nullptr;
 //    Buffer.Swap(i, Rand);
 //  }
 //}
-UWildDeckManager* UWildDeckManager::GetInstance()
-{
-  if (!Instance)
-  {
-    Instance = NewObject<UWildDeckManager>();
-  }
-  return Instance;
-}
 
+void UWildDeckManager::AddDeck(UWildDeck* NewDeck)
+{
+  if (!NewDeck) return;
+  Decks.Add(NewDeck);
+}
