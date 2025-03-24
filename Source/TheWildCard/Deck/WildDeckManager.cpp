@@ -2,9 +2,9 @@
 
 
 #include "WildDeckManager.h"
+#include "TheWildCard/Deck/WildDeck.h"
 #include "TheWildCard/Card/CardDataRow.h"
 
-UWildDeckManager* UWildDeckManager::Instance = nullptr;
 
 //UDeck::UDeck()
 //  :maxSize(25)
@@ -33,12 +33,26 @@ UWildDeckManager* UWildDeckManager::Instance = nullptr;
 //    Buffer.Swap(i, Rand);
 //  }
 //}
-UWildDeckManager* UWildDeckManager::GetInstance()
+
+UWildDeckManager::UWildDeckManager()
 {
-  if (!Instance)
+  TArray<FName> Cards;
+  for (int i = 0; i < 10; i++)
   {
-    Instance = NewObject<UWildDeckManager>();
+    Cards.Add("1c_sample");
   }
-  return Instance;
+  MakeDeck(EClassType::Warrior, Cards);
 }
 
+void UWildDeckManager::AddDeck(UWildDeck* NewDeck)
+{
+  if (!NewDeck) return;
+  Decks.Add(NewDeck);
+}
+
+void UWildDeckManager::MakeDeck(EClassType Class, TArray<FName> CardList)
+{
+  UWildDeck* Deck = NewObject<UWildDeck>();
+  Deck->Init(Class, CardList);
+  AddDeck(Deck);
+}

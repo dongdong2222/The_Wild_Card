@@ -18,10 +18,3 @@ void AWildTileBase::BeginPlay()
 	
 }
 
-// Called every frame
-void AWildTileBase::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-

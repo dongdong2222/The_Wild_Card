@@ -44,8 +44,3 @@ void AWildGameState::EndPhase()
 {
   CurrentPhase->EndPhase();
 }
-
-void AWildGameState::SetInterface(TScriptInterface<IWildTurnState> NewInterface)
-{
-
-}

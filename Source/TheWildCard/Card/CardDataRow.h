@@ -19,6 +19,14 @@ enum class ECardType : uint8
   Tao,
   Nature
 };
+UENUM(BlueprintType)
+enum class EClassType : uint8
+{
+  Warrior,
+  Rogue,
+  Powwow,
+  Mage
+};
 
 USTRUCT(BlueprintType)
 struct FCardDataRow : public FTableRowBase
@@ -30,6 +38,9 @@ public:
 
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   FName Eng_CardName;
+
+  UPROPERTY(EditAnywhere, BlueprintReadWrite)
+  EClassType Class;
 
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   ECardType CardType;

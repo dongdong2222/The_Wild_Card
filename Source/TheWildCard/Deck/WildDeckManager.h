@@ -4,42 +4,33 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "TheWildCard/Card/CardDataRow.h"
 #include "WildDeckManager.generated.h"
 
 struct FCardDataRow;
-//UCLASS()
-//class UDeck : public UObject
-//{
-//	GENERATED_BODY()
-//public:
-//	//UDeck();
-//
-//	UFUNCTION()
-//	void Init();
-//	UFUNCTION()
-//	FCardDataRow Draw();
-//	UFUNCTION()
-//	void Shuffle();
-//
-//private:
-//	int maxSize;
-//	TArray<FCardDataRow> Deck;
-//	TArray<int> Buffer;
-//};
-/**
- * 
- */
+class UWildDeck;
+
 UCLASS()
-class THEWILDCARD_API UWildDeckManager : public UObject
+class THEWILDCARD_API UWildDeckManager : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 public:
-	static UWildDeckManager* GetInstance();
+	UWildDeckManager();
+
+	UPROPERTY(BlueprintReadOnly, Category="Deck")
+	TArray<UWildDeck*> Decks;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Deck")
+	UWildDeck* CurrentDeck;
+
+public:
+	UFUNCTION(BlueprintCallable)
+	void AddDeck(UWildDeck* NewDeck);
+
+	UFUNCTION(BlueprintCallable)
+	void MakeDeck(EClassType Class, TArray<FName> CardList);
 
 private:
-	static UWildDeckManager* Instance;
-
-	//UDeck* CurrentDeck;
-
 	
+
 };

@@ -29,9 +29,6 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void EndPhase();
 
-	UFUNCTION(BlueprintCallable)
-	void SetInterface(TScriptInterface<IWildTurnState> NewInterface);
-
 
 public:
 	UPROPERTY(EditAnywhere, Category="Phase")
