@@ -10,24 +10,25 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(BlueprintType)
 class THEWILDCARD_API UWildDeck : public UObject
 {
 	GENERATED_BODY()
 public:
 	UWildDeck();
 
-	//UFUNCTION()
-	//void Init();
+	UFUNCTION()
+	void Init(EClassType P_Class, TArray<FName> CardList);
 	//UFUNCTION()
 	//FCardDataRow Draw();
-	//UFUNCTION()
-	//void Shuffle();
+	UFUNCTION()
+	void Shuffle();
 public:
+	UPROPERTY(BlueprintReadOnly)
 	EClassType Class;
 
 private:
 	int MaxSize;
-	TArray<FCardDataRow> Deck;
+	TArray<FName> Deck;
 	TArray<int> Buffer;
 };
