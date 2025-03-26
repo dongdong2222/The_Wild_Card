@@ -34,7 +34,7 @@ void AWildMapBase::BeginPlay()
 	}
 	
 	//Player Spawn
-	K2_PlayerSpawn(MapSize - 2, MapSize - 2);
+	K2_PlayerSpawn(MapSize - 2, 1);
 
 
 }

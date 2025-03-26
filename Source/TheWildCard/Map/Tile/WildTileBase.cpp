@@ -14,12 +14,14 @@ AWildTileBase::AWildTileBase()
 
 void AWildTileBase::SpawnToTile(TSubclassOf<AWildUnitBase> UnitClass)
 {
-	if (TileState != ETileState::Spawnable) return;
+	//if (TileState != ETileState::Spawnable) return;
 	AWildUnitBase* Unit = GetWorld()->SpawnActor<AWildUnitBase>(
 		UnitClass,
 		GetActorLocation(),
 		FRotator::ZeroRotator
 	);
+	Unit->AddActorLocalOffset(FVector(0.f, 50.f, 0.f));
+	Unit->AttachToActor(this, FAttachmentTransformRules::KeepWorldTransform);
 	PlacedUnit = Unit;
 }
 
