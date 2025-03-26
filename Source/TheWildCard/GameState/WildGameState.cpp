@@ -30,6 +30,7 @@ void AWildGameState::Tick(float DeltaTime)
 {
   Super::Tick(DeltaTime);
   if (!CurrentPhase) return;
+  if (!GEngine) return;
   UE_LOG(LogTemp, Warning, TEXT("Warning"));
   GEngine->AddOnScreenDebugMessage(-1, DeltaTime, FColor::Blue, TEXT("Test"));
   GEngine->AddOnScreenDebugMessage(-1, DeltaTime, FColor::Blue, *Cast<UObject>(CurrentPhase)->GetClass()->GetName());
