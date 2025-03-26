@@ -8,6 +8,25 @@
 
 class AWildTileBase;
 
+USTRUCT(BlueprintType, Blueprintable)
+struct FGrid
+{
+	GENERATED_BODY()
+
+public:
+	FGrid() 
+	{
+
+	}
+	FGrid(int32 ColSize)
+	{
+		Col.Init(nullptr, ColSize);
+	}
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TArray<AWildTileBase*> Col;
+};
+
+
 UCLASS()
 class THEWILDCARD_API AWildMapBase : public AActor
 {
@@ -16,17 +35,22 @@ class THEWILDCARD_API AWildMapBase : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AWildMapBase();
-	TArray<TArray<AWildTileBase>> Tiles;
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void K2_PlayerSpawn(int X, int Y);
 public:
 	UPROPERTY(EditAnywhere, Category="Map")
 	TSubclassOf<AWildTileBase> TileClass;
 	UPROPERTY(EditAnywhere, Category="Map")
 	int32 MapSize;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Map")
+	TArray<FGrid> Tiles;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
 
 
 };

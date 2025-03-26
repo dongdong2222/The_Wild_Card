@@ -8,8 +8,16 @@ UWildDeck::UWildDeck()
 {
 }
 
+FName UWildDeck::Draw()
+{
+  int idx =  Buffer.Last();
+  Buffer.Pop();
+  return Deck[idx];
+}
+
 void UWildDeck::Shuffle()
 {
+
   for (int i = 0; i < Buffer.Num(); i++)
   {
     int Rand = FMath::RandRange(i, Buffer.Num()-1);
@@ -22,5 +30,9 @@ void UWildDeck::Init(EClassType P_Class, TArray<FName> CardList)
   Class = P_Class;
   Deck.Empty();
   Deck.Append(CardList);
+  for (int i = 0; i < Deck.Num(); i++)
+  {
+    Buffer.Add(i);
+  }
 }
 

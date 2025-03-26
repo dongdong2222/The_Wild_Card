@@ -16,6 +16,8 @@ AWildMapBase::AWildMapBase()
 void AWildMapBase::BeginPlay()
 {
 	Super::BeginPlay();
+	Tiles.Init(FGrid(MapSize), MapSize);
+	//Tile Spawn
 	double Dx = 200.f;
 	double Dy = 150.f;
 	for (int i = 0; i < MapSize; i++)
@@ -27,9 +29,14 @@ void AWildMapBase::BeginPlay()
 				FRotator::ZeroRotator
 				);
 			Tile->AttachToActor(this, FAttachmentTransformRules::KeepWorldTransform);
+			Tiles[i].Col[j] = Tile;
 		}
 	}
 	
+	//Player Spawn
+	K2_PlayerSpawn(MapSize - 2, MapSize - 2);
+
+
 }
 
 

@@ -4,18 +4,23 @@
 #include "WildGameState.h"
 #include "TheWildCard/Turn/WildTurnState.h"
 #include "TheWildCard/Turn/Phase/WildGameSetPhase.h"
+#include "TheWildCard/Turn/Phase/WildTurnStartPhase.h"
+
+AWildGameState::AWildGameState()
+{
+  PrimaryActorTick.bCanEverTick = true;
+}
 
 void AWildGameState::BeginPlay()
 {
   GameSetPhase = NewObject<UWildGameSetPhase>(this, GameSetPhaseClass);
   GameSetPhase->InitPhase(this);
-  TurnStartPhase = NewObject<UWildGameSetPhase>(this, TurnStartPhaseClass);
+  TurnStartPhase = NewObject<UWildTurnStartPhase>(this, TurnStartPhaseClass);
   TurnStartPhase->InitPhase(this);
   //TurnStartPhase;
   //ActionSelectPhase;
   //ActionPhase;
-  //GameEndPhase;
-
+  //GameEndPhase
 
 
   StartGame();
@@ -24,7 +29,10 @@ void AWildGameState::BeginPlay()
 void AWildGameState::Tick(float DeltaTime)
 {
   Super::Tick(DeltaTime);
-  //GEngine->AddOnScreenDebugMessage(-1, DeltaTime, FColor::Blue, FString::Printf("CurrentState : %s", *CurrentPhase->_getUObject()->StaticConfigName));
+  if (!CurrentPhase) return;
+  UE_LOG(LogTemp, Warning, TEXT("Warning"));
+  GEngine->AddOnScreenDebugMessage(-1, DeltaTime, FColor::Blue, TEXT("Test"));
+  GEngine->AddOnScreenDebugMessage(-1, DeltaTime, FColor::Blue, *Cast<UObject>(CurrentPhase)->GetClass()->GetName());
 }
 
 void AWildGameState::StartGame()

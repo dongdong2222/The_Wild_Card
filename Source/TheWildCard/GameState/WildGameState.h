@@ -8,6 +8,7 @@
 
 class IWildTurnState;
 class UWildGameSetPhase;
+class UWildTurnStartPhase;
 class APlayerController;
 
 /**
@@ -18,6 +19,7 @@ class THEWILDCARD_API AWildGameState : public AGameState
 {
 	GENERATED_BODY()
 public:
+	AWildGameState();
 	//implement of AGameState
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
@@ -34,7 +36,7 @@ public:
 	UPROPERTY(EditAnywhere, Category="Phase")
 	TSubclassOf<UWildGameSetPhase> GameSetPhaseClass;
 	UPROPERTY(EditAnywhere, Category = "Phase")
-	TSubclassOf<UWildGameSetPhase> TurnStartPhaseClass;
+	TSubclassOf<UWildTurnStartPhase> TurnStartPhaseClass;
 	UPROPERTY(EditAnywhere, Category = "Phase")
 	TSubclassOf<UWildGameSetPhase> ActionSelectPhaseClass;
 	UPROPERTY(EditAnywhere, Category = "Phase")

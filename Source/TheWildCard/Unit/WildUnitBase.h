@@ -3,17 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/PlayerState.h"
-#include "WildPlayerState.generated.h"
+#include "PaperFlipbookActor.h"
+#include "WildUnitBase.generated.h"
 
-class WildDeck;
 /**
  * 
  */
 UCLASS()
-class THEWILDCARD_API AWildPlayerState : public APlayerState
+class THEWILDCARD_API AWildUnitBase : public APaperFlipbookActor
 {
 	GENERATED_BODY()
-public:
 	
 };
