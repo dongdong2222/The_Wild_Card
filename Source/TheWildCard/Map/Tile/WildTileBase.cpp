@@ -27,11 +27,18 @@ void AWildTileBase::SpawnToTile(TSubclassOf<AWildUnitBase> UnitClass)
 
 void AWildTileBase::SetTileState(ETileState NextState)
 {
-	//switch (NextState)
-	//{
-	//case ETileState::None:
-	//	
-	//}
+	switch (NextState)
+	{
+	case ETileState::None:
+		K2_SetNone();
+		break;
+	case ETileState::Moveable:
+		K2_SetMoveable();
+		break;
+	case ETileState::Spawnable:
+		K2_SetSpawnable();
+		break;
+	}
 
 
 	TileState = NextState;

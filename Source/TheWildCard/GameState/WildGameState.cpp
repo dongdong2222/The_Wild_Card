@@ -5,6 +5,7 @@
 #include "TheWildCard/Turn/WildTurnState.h"
 #include "TheWildCard/Turn/Phase/WildGameSetPhase.h"
 #include "TheWildCard/Turn/Phase/WildTurnStartPhase.h"
+#include "TheWildCard/Map/WildMapManager.h"
 
 AWildGameState::AWildGameState()
 {
@@ -40,7 +41,10 @@ void AWildGameState::StartGame()
 {
   //선 후공 정하기
 
+  //Map 생성
+  GetGameInstance()->GetSubsystem<UWildMapManager>()->GenerateMap(MapClass);
 
+  //GameSetPhase 시작
   SetPhase(GameSetPhase);
 }
 

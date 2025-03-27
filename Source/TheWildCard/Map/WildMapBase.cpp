@@ -12,10 +12,8 @@ AWildMapBase::AWildMapBase()
 
 }
 
-// Called when the game starts or when spawned
-void AWildMapBase::BeginPlay()
+void AWildMapBase::InitMap()
 {
-	Super::BeginPlay();
 	Tiles.Init(FGrid(MapSize), MapSize);
 	//Tile Spawn
 	double Dx = 200.f;
@@ -27,15 +25,20 @@ void AWildMapBase::BeginPlay()
 				TileClass,
 				FVector((double)(Dx * j), 0.f, (double)(Dy * i)),
 				FRotator::ZeroRotator
-				);
+			);
 			Tile->AttachToActor(this, FAttachmentTransformRules::KeepWorldTransform);
 			Tiles[i].Col[j] = Tile;
 		}
 	}
-	
 	//Player Spawn
 	K2_PlayerSpawn(MapSize - 2, 1);
 
+}
+
+// Called when the game starts or when spawned
+void AWildMapBase::BeginPlay()
+{
+	Super::BeginPlay();
 
 }
 

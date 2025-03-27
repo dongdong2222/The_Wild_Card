@@ -29,13 +29,26 @@ public:
 	void SpawnToTile(TSubclassOf<AWildUnitBase> UnitClass);
 	UFUNCTION(BlueprintCallable)
 	void SetTileState(ETileState NextState);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void K2_SetNone();
+	UFUNCTION(BlueprintImplementableEvent)
+	void K2_SetMoveable();
+	UFUNCTION(BlueprintImplementableEvent)
+	void K2_SetSpawnable();
 public:
 	TArray<AWildTileBase*> InjectTiles;
 	int8 MaxTileCount = 6;
 	
 	AWildUnitBase* PlacedUnit;
 	ETileState TileState;
-
+public:
+	//UPROPERTY(EditAnywhere)
+	//UMaterial* NoneMaterial;
+	//UPROPERTY(EditAnywhere)
+	//UMaterial* SpawnableMaterial;
+	//UPROPERTY(EditAnywhere)
+	//UMaterial* MoveableMaterial;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

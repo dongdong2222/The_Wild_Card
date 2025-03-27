@@ -36,6 +36,9 @@ public:
 	// Sets default values for this actor's properties
 	AWildMapBase();
 
+	UFUNCTION()
+	void InitMap();
+
 	UFUNCTION(BlueprintImplementableEvent)
 	void K2_PlayerSpawn(int X, int Y);
 public:
