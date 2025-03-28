@@ -26,11 +26,14 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetTileMoveable(AWildUnitBase* Unit);
 	UFUNCTION(BlueprintCallable)
+	void SetTileAttackable(AWildUnitBase* Unit);
+	UFUNCTION(BlueprintCallable)
 	void SetAllTileNone();
+	UFUNCTION(BlueprintCallable)
+	AWildTileBase* GetTileWithCord(int x, int y);
 
 
 public:
 	AWildMapBase* CurrentMap;
-	TArray<AWildUnitBase*> Units;
 	
 };

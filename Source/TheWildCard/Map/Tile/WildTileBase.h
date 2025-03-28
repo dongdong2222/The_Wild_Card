@@ -8,12 +8,13 @@
 
 class AWildUnitBase;
 
-UENUM()
-enum class ETileState
+UENUM(BlueprintType)
+enum class ETileState : uint8
 {
 	None,
 	Spawnable,
 	Moveable,
+	Attackable
 };
 
 UCLASS()
@@ -25,8 +26,8 @@ public:
 	// Sets default values for this actor's properties
 	AWildTileBase();
 	
-	UFUNCTION(BlueprintCallable)
-	void SpawnToTile(TSubclassOf<AWildUnitBase> UnitClass);
+	//UFUNCTION(BlueprintCallable)
+	//void SpawnToTile(TSubclassOf<AWildUnitBase> UnitClass);
 	UFUNCTION(BlueprintCallable)
 	void SetTileState(ETileState NextState);
 
@@ -36,21 +37,16 @@ public:
 	void K2_SetMoveable();
 	UFUNCTION(BlueprintImplementableEvent)
 	void K2_SetSpawnable();
+	UFUNCTION(BlueprintImplementableEvent)
+	void K2_SetAttackable();
 public:
-	TArray<AWildTileBase*> InjectTiles;
-	int8 MaxTileCount = 6;
+	//TArray<AWildTileBase*> InjectTiles;
+	//int8 MaxTileCount = 6;
 	
-	AWildUnitBase* PlacedUnit;
-	ETileState TileState;
-public:
-	//UPROPERTY(EditAnywhere)
-	//UMaterial* NoneMaterial;
-	//UPROPERTY(EditAnywhere)
-	//UMaterial* SpawnableMaterial;
-	//UPROPERTY(EditAnywhere)
-	//UMaterial* MoveableMaterial;
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	AWildUnitBase* SpawnedUnit;
+	TPair<int, int> Cordinate;
+	UPROPERTY(BlueprintReadOnly)
+	ETileState CurrentState;
+
 
 };

@@ -39,8 +39,6 @@ public:
 	UFUNCTION()
 	void InitMap();
 
-	UFUNCTION(BlueprintImplementableEvent)
-	void K2_PlayerSpawn(int X, int Y);
 public:
 	UPROPERTY(EditAnywhere, Category="Map")
 	TSubclassOf<AWildTileBase> TileClass;
@@ -49,11 +47,5 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Map")
 	TArray<FGrid> Tiles;
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-
 
 };

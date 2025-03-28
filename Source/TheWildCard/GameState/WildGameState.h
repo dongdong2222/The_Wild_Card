@@ -11,6 +11,7 @@ class UWildGameSetPhase;
 class UWildTurnStartPhase;
 class APlayerController;
 class AWildMapBase;
+class AWildUnitBase;
 /**
  * 
  */
@@ -43,8 +44,10 @@ public:
 	TSubclassOf<UWildGameSetPhase> ActionPhaseClass;
 	UPROPERTY(EditAnywhere, Category = "Phase")
 	TSubclassOf<UWildGameSetPhase> GameEndPhaseClass;
-	UPROPERTY(EditAnywhere, Category = "Phase")
+	UPROPERTY(EditAnywhere, Category = "Map")
 	TSubclassOf<AWildMapBase> MapClass;
+	UPROPERTY(EditAnywhere, Category = "Player")
+	TSubclassOf<AWildUnitBase> PlayerUnitClass;
 
 	IWildTurnState* GameSetPhase;
 	IWildTurnState* TurnStartPhase;

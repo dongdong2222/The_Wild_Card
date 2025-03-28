@@ -27,20 +27,14 @@ void AWildMapBase::InitMap()
 				FRotator::ZeroRotator
 			);
 			Tile->AttachToActor(this, FAttachmentTransformRules::KeepWorldTransform);
+			Tile->Cordinate = TPair<int, int>(i, j);
 			Tiles[i].Col[j] = Tile;
 		}
 	}
-	//Player Spawn
-	K2_PlayerSpawn(MapSize - 2, 1);
 
 }
 
-// Called when the game starts or when spawned
-void AWildMapBase::BeginPlay()
-{
-	Super::BeginPlay();
 
-}
 
 
 

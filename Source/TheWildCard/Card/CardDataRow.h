@@ -7,6 +7,8 @@
 #include "GameplayTagContainer.h"
 #include "CardDataRow.generated.h"
 
+class AWildUnitBase;
+
 /**
  * 
  */
@@ -68,5 +70,5 @@ public:
   UTexture2D* Illust;
 
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
-  TSubclassOf<AActor> UnitClass;
+  TSubclassOf<AWildUnitBase> UnitClass;
 };

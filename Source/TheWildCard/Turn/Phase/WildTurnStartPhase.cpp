@@ -20,6 +20,7 @@ void UWildTurnStartPhase::StartPhase()
   DeckManager->DrawCard(1);
   //Draw() player1
   //Draw() player2
+  EndPhase();
 }
 
 void UWildTurnStartPhase::EndPhase()

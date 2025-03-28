@@ -5,6 +5,7 @@
 #include "TheWildCard/Map/WildMapBase.h"
 #include "TheWildCard/Unit/WildUnitBase.h"
 #include "TheWildCard/Map/Tile/WildTileBase.h"
+#include "TheWildCard/Unit/WildUnitManager.h"
 
 void UWildMapManager::GenerateMap(TSubclassOf<AWildMapBase> MapClass)
 {
@@ -37,6 +38,8 @@ TArray<AWildTileBase*> UWildMapManager::GetInjectTiles(AWildUnitBase* Unit)
 
 void UWildMapManager::SetTileSpawnable()
 {
+   TArray<AWildUnitBase*> Units =  GetWorld()->GetGameInstance()->GetSubsystem<UWildUnitManager>()->PlayerUnits;
+
   for (int i = 0; i < Units.Num(); i++)
   {
     TArray<AWildTileBase*> InjectTiles = GetInjectTiles(Units[i]);
@@ -53,8 +56,13 @@ void UWildMapManager::SetTileMoveable(AWildUnitBase* Unit)
   TArray<AWildTileBase*> InjectTiles = GetInjectTiles(Unit);
   for (int i = 0; i < InjectTiles.Num(); i++)
   {
+      if (InjectTiles[i]->SpawnedUnit) continue;
     InjectTiles[i]->SetTileState(ETileState::Moveable);
   }
+}
+
+void UWildMapManager::SetTileAttackable(AWildUnitBase* Unit)
+{
 }
 
 void UWildMapManager::SetAllTileNone()
@@ -66,4 +74,9 @@ void UWildMapManager::SetAllTileNone()
       CurrentMap->Tiles[x].Col[y]->SetTileState(ETileState::None);
     }
   }
+}
+
+AWildTileBase* UWildMapManager::GetTileWithCord(int x, int y)
+{
+    return CurrentMap->Tiles[x].Col[y];
 }

@@ -6,7 +6,7 @@
 #include "PaperFlipbookActor.h"
 #include "WildUnitBase.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnClickedUnit, AWildUnitBase*, Unit);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnClickedUnitSignature, AWildUnitBase*, Unit);
 
 class AWildTileBase;
 /**
@@ -17,8 +17,19 @@ class THEWILDCARD_API AWildUnitBase : public APaperFlipbookActor
 {
 	GENERATED_BODY()
 public:
+	virtual void BeginPlay() override;
+public:
+	UPROPERTY(BlueprintReadOnly)
 	AWildTileBase* CurrentTile;
 	TPair<int, int> CurrentCord;
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
-	FOnClickedUnit OnClickedUnit;
+	FOnClickedUnitSignature OnClickedUnitDelegate;
+public:
+	UFUNCTION()
+	void OnClickedUnit(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed);
+
+	UFUNCTION(BlueprintCallable)
+	void MoveToTile(AWildTileBase* Tile);
+	UFUNCTION(BlueprintCallable)
+	void AttackToTile(AWildTileBase* Tile);
 };
