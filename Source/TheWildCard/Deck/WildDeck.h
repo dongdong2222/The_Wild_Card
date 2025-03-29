@@ -19,8 +19,9 @@ public:
 
 	UFUNCTION()
 	void Init(EClassType P_Class, TArray<FName> CardList);
-	//UFUNCTION()
-	//FCardDataRow Draw();
+	UFUNCTION()
+	FName Draw();
+
 	UFUNCTION()
 	void Shuffle();
 public:

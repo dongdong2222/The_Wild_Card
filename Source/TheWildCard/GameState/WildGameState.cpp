@@ -4,16 +4,25 @@
 #include "WildGameState.h"
 #include "TheWildCard/Turn/WildTurnState.h"
 #include "TheWildCard/Turn/Phase/WildGameSetPhase.h"
+#include "TheWildCard/Turn/Phase/WildTurnStartPhase.h"
+#include "TheWildCard/Map/WildMapManager.h"
+#include "TheWildCard/Unit/WildUnitManager.h"
+
+AWildGameState::AWildGameState()
+{
+  PrimaryActorTick.bCanEverTick = true;
+}
 
 void AWildGameState::BeginPlay()
 {
   GameSetPhase = NewObject<UWildGameSetPhase>(this, GameSetPhaseClass);
   GameSetPhase->InitPhase(this);
+  TurnStartPhase = NewObject<UWildTurnStartPhase>(this, TurnStartPhaseClass);
+  TurnStartPhase->InitPhase(this);
   //TurnStartPhase;
   //ActionSelectPhase;
   //ActionPhase;
-  //GameEndPhase;
-
+  //GameEndPhase
 
 
   StartGame();
@@ -22,14 +31,23 @@ void AWildGameState::BeginPlay()
 void AWildGameState::Tick(float DeltaTime)
 {
   Super::Tick(DeltaTime);
-  //GEngine->AddOnScreenDebugMessage(-1, DeltaTime, FColor::Blue, FString::Printf("CurrentState : %s", *CurrentPhase->_getUObject()->StaticConfigName));
+  if (!CurrentPhase) return;
+  if (!IsValid(GEngine)) return;
+  UE_LOG(LogTemp, Warning, TEXT("Warning"));
+  //GEngine->AddOnScreenDebugMessage(-1, DeltaTime, FColor::Blue, TEXT("Test"));
+  //GEngine->AddOnScreenDebugMessage(-1, DeltaTime, FColor::Blue, *Cast<UObject>(CurrentPhase)->GetClass()->GetName());
 }
 
 void AWildGameState::StartGame()
 {
   //선 후공 정하기
 
+  //Map 생성
+  GetGameInstance()->GetSubsystem<UWildMapManager>()->GenerateMap(MapClass);
+  //플레이어 생성
+  GetGameInstance()->GetSubsystem<UWildUnitManager>()->SpawnUnitByCord(PlayerUnitClass, 1, 8);
 
+  //GameSetPhase 시작
   SetPhase(GameSetPhase);
 }
 

@@ -8,8 +8,10 @@
 
 class IWildTurnState;
 class UWildGameSetPhase;
+class UWildTurnStartPhase;
 class APlayerController;
-
+class AWildMapBase;
+class AWildUnitBase;
 /**
  * 
  */
@@ -18,6 +20,7 @@ class THEWILDCARD_API AWildGameState : public AGameState
 {
 	GENERATED_BODY()
 public:
+	AWildGameState();
 	//implement of AGameState
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
@@ -33,10 +36,18 @@ public:
 public:
 	UPROPERTY(EditAnywhere, Category="Phase")
 	TSubclassOf<UWildGameSetPhase> GameSetPhaseClass;
-	//UPROPERTY(EditAnywhere, Category = "Phase")
-	//UPROPERTY(EditAnywhere, Category = "Phase")
-	//UPROPERTY(EditAnywhere, Category = "Phase")
-	//UPROPERTY(EditAnywhere, Category = "Phase")
+	UPROPERTY(EditAnywhere, Category = "Phase")
+	TSubclassOf<UWildTurnStartPhase> TurnStartPhaseClass;
+	UPROPERTY(EditAnywhere, Category = "Phase")
+	TSubclassOf<UWildGameSetPhase> ActionSelectPhaseClass;
+	UPROPERTY(EditAnywhere, Category = "Phase")
+	TSubclassOf<UWildGameSetPhase> ActionPhaseClass;
+	UPROPERTY(EditAnywhere, Category = "Phase")
+	TSubclassOf<UWildGameSetPhase> GameEndPhaseClass;
+	UPROPERTY(EditAnywhere, Category = "Map")
+	TSubclassOf<AWildMapBase> MapClass;
+	UPROPERTY(EditAnywhere, Category = "Player")
+	TSubclassOf<AWildUnitBase> PlayerUnitClass;
 
 	IWildTurnState* GameSetPhase;
 	IWildTurnState* TurnStartPhase;
@@ -47,8 +58,8 @@ public:
 	//Phases
 	IWildTurnState* CurrentPhase;
 
-	APlayerController* FirstPlayer;
-	APlayerController* SecondPlayer;
+	AController* FirstPlayer;
+	AController* SecondPlayer;
 
 
 	

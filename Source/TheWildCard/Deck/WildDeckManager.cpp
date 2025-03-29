@@ -6,33 +6,6 @@
 #include "TheWildCard/Card/CardDataRow.h"
 
 
-//UDeck::UDeck()
-//  :maxSize(25)
-//{
-//}
-//void UDeck::Init()
-//{
-//  Buffer.Empty();
-//  for (int i = 0; i < maxSize; i++)
-//  {
-//    Buffer.Add(i);
-//  }
-//  Shuffle();
-//}
-//FCardDataRow UDeck::Draw()
-//{
-//  int idx =  Buffer.Last();
-//  Buffer.Pop();
-//  return Deck[idx];
-//}
-//void UDeck::Shuffle()
-//{
-//  for (int i = 0; i < Buffer.Num(); i++)
-//  {
-//    int Rand = FMath::RandRange(i, Buffer.Num()-1);
-//    Buffer.Swap(i, Rand);
-//  }
-//}
 
 UWildDeckManager::UWildDeckManager()
 {
@@ -42,6 +15,7 @@ UWildDeckManager::UWildDeckManager()
     Cards.Add("1c_sample");
   }
   MakeDeck(EClassType::Warrior, Cards);
+  SelectDeck();
 }
 
 void UWildDeckManager::AddDeck(UWildDeck* NewDeck)
@@ -55,4 +29,20 @@ void UWildDeckManager::MakeDeck(EClassType Class, TArray<FName> CardList)
   UWildDeck* Deck = NewObject<UWildDeck>();
   Deck->Init(Class, CardList);
   AddDeck(Deck);
+}
+
+void UWildDeckManager::DrawCard(int Amount)
+{
+  if (!CurrentDeck) return;
+  for (int i = 0; i < Amount; i++)
+  {
+    FName CardName = CurrentDeck->Draw();
+    OnDraw.Broadcast(CardName);
+    
+  }
+}
+
+void UWildDeckManager::SelectDeck()
+{
+  CurrentDeck = Decks[0];
 }

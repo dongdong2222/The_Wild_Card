@@ -12,10 +12,10 @@ AWildMapBase::AWildMapBase()
 
 }
 
-// Called when the game starts or when spawned
-void AWildMapBase::BeginPlay()
+void AWildMapBase::InitMap()
 {
-	Super::BeginPlay();
+	Tiles.Init(FGrid(MapSize), MapSize);
+	//Tile Spawn
 	double Dx = 200.f;
 	double Dy = 150.f;
 	for (int i = 0; i < MapSize; i++)
@@ -25,12 +25,16 @@ void AWildMapBase::BeginPlay()
 				TileClass,
 				FVector((double)(Dx * j), 0.f, (double)(Dy * i)),
 				FRotator::ZeroRotator
-				);
+			);
 			Tile->AttachToActor(this, FAttachmentTransformRules::KeepWorldTransform);
+			Tile->Cordinate = TPair<int, int>(i, j);
+			Tiles[i].Col[j] = Tile;
 		}
 	}
-	
+
 }
+
+
 
 
 

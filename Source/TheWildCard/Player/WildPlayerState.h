@@ -15,6 +15,5 @@ class THEWILDCARD_API AWildPlayerState : public APlayerState
 {
 	GENERATED_BODY()
 public:
-	WildDeck* CurrentDeck;
 	
 };
