@@ -11,6 +11,7 @@
 AWildGameState::AWildGameState()
 {
   PrimaryActorTick.bCanEverTick = true;
+  bReplicates = false;
 }
 
 void AWildGameState::BeginPlay()
@@ -24,8 +25,7 @@ void AWildGameState::BeginPlay()
   //ActionPhase;
   //GameEndPhase
 
-
-  StartGame();
+  //StartGame();
 }
 
 void AWildGameState::Tick(float DeltaTime)
@@ -38,10 +38,21 @@ void AWildGameState::Tick(float DeltaTime)
   //GEngine->AddOnScreenDebugMessage(-1, DeltaTime, FColor::Blue, *Cast<UObject>(CurrentPhase)->GetClass()->GetName());
 }
 
-void AWildGameState::StartGame()
+void AWildGameState::InitPlayers_Implementation(APlayerController* p1, APlayerController* p2)
+{
+	Player1 = p1;
+	Player2 = p2;
+}
+
+
+
+void AWildGameState::StartGame_Implementation()
 {
   //선 후공 정하기
-
+	if (HasAuthority())
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("StartGame in GameState"));
+	}
   //Map 생성
   GetGameInstance()->GetSubsystem<UWildMapManager>()->GenerateMap(MapClass);
   //플레이어 생성
