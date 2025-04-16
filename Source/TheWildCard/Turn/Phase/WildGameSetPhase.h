@@ -11,7 +11,7 @@
 /**
  * 
  */
-UCLASS(Blueprintable, BlueprintType)
+UCLASS(Blueprintable)
 class THEWILDCARD_API UWildGameSetPhase : public UObject, public IWildTurnState
 {
 	GENERATED_BODY()
@@ -21,10 +21,6 @@ public:
 	virtual void StartPhase() override;
 	virtual void EndPhase() override;
 	//End of IWildTurnState
-
-
-	UFUNCTION(BlueprintImplementableEvent)
-	void K2_StartPhase();
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Widget")

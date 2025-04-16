@@ -26,9 +26,6 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	//End of AGameState
 
-	UFUNCTION(BlueprintCallable, Server, Reliable)
-	void InitPlayers(APlayerController* p1, APlayerController* p2);
-	UFUNCTION(BlueprintCallable, Server, Reliable)
 	void StartGame();
 	void SetPhase(IWildTurnState* NextPhase);
 
@@ -60,8 +57,10 @@ public:
 
 	//Phases
 	IWildTurnState* CurrentPhase;
+
+	AController* FirstPlayer;
+	AController* SecondPlayer;
+
+
 	
-	UPROPERTY()
-	APlayerController* Player1;
-	APlayerController* Player2;
 };

@@ -25,17 +25,15 @@ void UWildGameSetPhase::StartPhase()
   DeckManager->CurrentDeck->Shuffle();
   DeckManager->DrawCard(4);
 
-  K2_StartPhase();
+  if (!IsValid(GameSetWidgetClass)) return;
+  GameSetWidget = CreateWidget<UUserWidget>(GetWorld(), GameSetWidgetClass);
 
-  //if (!IsValid(GameSetWidgetClass)) return;
-  //GameSetWidget = CreateWidget<UUserWidget>(GetWorld(), GameSetWidgetClass);
-
-  //if (GameSetWidget)
-  //{
-  //  GameSetWidget->AddToViewport();
-  //  // TODO : PlayerController의 입력을 UI모드로
-  //  
-  //}
+  if (GameSetWidget)
+  {
+    GameSetWidget->AddToViewport();
+    // TODO : PlayerController의 입력을 UI모드로
+    
+  }
 
 
 }
